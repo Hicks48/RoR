@@ -60,5 +60,7 @@ module Ratebeer
     config.assets.version = '1.0'
     #Heruku stuff
     config.assets.initialize_on_precompile = false
+    #Module stuff
+    config.autoload_paths += Dir["#{Rails.root}/lib"]
   end
 end

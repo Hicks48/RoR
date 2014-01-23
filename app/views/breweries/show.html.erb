@@ -22,6 +22,10 @@
 </p>
 
 <p>
-	<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
-	<%= link_to 'Back', breweries_path %>
+	Has <%= pluralize(@ratings.length, 'rating', 'ratings') %>
+	<% if(@ratings.length != 0) %> , average <%= @brewery.average_rating %> <% end %>
+</p>
+
+<p>
+	<%= link_to 'Edit', edit_brewery_path(@brewery) %>
 </p>

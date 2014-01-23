@@ -1,5 +1,6 @@
 class BreweriesController < ApplicationController
-
+	before_filter :authenticate, only: [:show, :edit, :update, :destroy]
+	
   # GET /breweries
   # GET /breweries.json
   def index
@@ -11,7 +12,7 @@ class BreweriesController < ApplicationController
   # GET /breweries/1.json
   def show
     @brewery = Brewery.find(params[:id])
-
+	@ratings = @brewery.ratings
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @brewery }
@@ -76,5 +77,12 @@ class BreweriesController < ApplicationController
       format.html { redirect_to breweries_url }
       format.json { head :no_content }
     end
+  end
+  
+  def authenticate
+  	admin_accounts = {"admin" => "secret", "pekka" => "beer", "arto" => "foobar"}
+  	authenticate_or_request_with_http_basic do |username, password|
+  		admin_accounts[username] != nil && admin_accounts[username] == password	
+  	end
   end
 end

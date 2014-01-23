@@ -3,7 +3,6 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
     @beers = Beer.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beers }
@@ -25,7 +24,8 @@ class BeersController < ApplicationController
   # GET /beers/new.json
   def new
     @beer = Beer.new
-
+	@breweries = Brewery.all
+	@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beer }
@@ -40,17 +40,8 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    @beer = Beer.new(params[:beer])
-
-    respond_to do |format|
-      if @beer.save
-        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
-        format.json { render json: @beer, status: :created, location: @beer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @beer.errors, status: :unprocessable_entity }
-      end
-    end
+    @beer = Beer.create(params[:beer])
+    redirect_to beers_path
   end
 
   # PUT /beers/1
