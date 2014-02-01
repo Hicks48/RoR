@@ -42,8 +42,14 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    @beer = Beer.create(params[:beer])
-    redirect_to beers_path
+    @beer = Beer.new(params[:beer])
+    @breweries = Brewery.all
+	@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+    if(@beer.save)
+    	redirect_to beers_path
+    else
+    	render :new
+    end
   end
 
   # PUT /beers/1

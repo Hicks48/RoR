@@ -39,7 +39,16 @@ class BreweriesController < ApplicationController
   # POST /breweries.json
   def create
     @brewery = Brewery.new(params[:brewery])
-
+    
+    if(@brewery.year > Date.today.year)
+    	@brewery.errors[:base] = "Year can't be in the future!"
+    end
+    
+    if(@brewery.errors.any?)
+    	render :new
+    	return
+    end
+    
     respond_to do |format|
       if @brewery.save
         format.html { redirect_to @brewery, notice: 'Brewery was successfully created.' }

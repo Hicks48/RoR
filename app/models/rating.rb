@@ -1,8 +1,12 @@
 class Rating < ActiveRecord::Base
+
+validates :score, numericality: { greater_than_or_equal_to: 1,
+                                    less_than_or_equal_to: 50,
+                                    only_integer: true }
 belongs_to :beer
-  attr_accessible :beer_id, :score
-  #Comment
+belongs_to :user
+  attr_accessible :beer_id, :score, :user_id
   def to_s
-  	beer.name + " " + score.to_s
+  	return beer.name + " " + score.to_s
   end
 end
