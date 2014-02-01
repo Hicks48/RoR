@@ -16,11 +16,12 @@
 </p>
 
 
-<p>
+<ul>
+	Members <br>
 	<% @beer_club.users.each do |u| %>
-		<ul> <%= link_to u.username, user_path(u) %> </ul>
+		<li> <%= link_to u.username, user_path(u) %> </li>
 	<% end %>
-</p>
+</ul>
 
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
 <%= link_to 'Back', beer_clubs_path %>
