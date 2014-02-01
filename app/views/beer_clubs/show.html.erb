@@ -17,7 +17,7 @@
 
 
 <ul>
-	Members <br>
+	<b> Members </b>
 	<% @beer_club.users.each do |u| %>
 		<li> <%= link_to u.username, user_path(u) %> </li>
 	<% end %>

@@ -19,6 +19,7 @@
 </p>
 
 <ul>
+	<b> ratings </b>
 	<% @ratings.each do |r| %>
 	 	<li> <%= r.to_s %> <% if @user == current_user %>  <%= link_to 'delete', rating_path(r), method: :delete , data: { confirm: 'Are you sure?' } %> <% end %></li> 
 	 <% end %>
