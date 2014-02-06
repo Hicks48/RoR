@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/Hicks48/RoR.png?branch=master)](https://travis-ci.org/Hicks48/RoR)
