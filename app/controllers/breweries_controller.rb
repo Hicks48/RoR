@@ -40,10 +40,11 @@ class BreweriesController < ApplicationController
   def create
     @brewery = Brewery.new(params[:brewery])
     
-    if(@brewery.year > Date.today.year)
-    	@brewery.errors[:base] = "Year can't be in the future!"
+    if(@brewery.nil?)
+    	if(@brewery.year > Date.today.year)
+    		@brewery.errors[:base] = "Year can't be in the future!"
+    	end
     end
-    
     if(@brewery.errors.any?)
     	render :new
     	return

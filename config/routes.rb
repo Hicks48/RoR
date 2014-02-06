@@ -2,7 +2,7 @@ Ratebeer::Application.routes.draw do
   resources :beer_clubs
   resources :users
   resources :memberships
-  	get 'signup', to: 'user#new'
+  	get 'signup', to: 'users#new'
 	get 'kaikki_bisset', to: 'beers#index'
 	get '/', to: 'breweries#index'
 	delete 'signout', to: 'sessions#destroy'

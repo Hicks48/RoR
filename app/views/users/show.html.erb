@@ -10,6 +10,14 @@
 </p>
 
 <p>
+	<% if(!@user.ratings.empty?) %>
+		Favorite style: <%= @user.favorite_style %>
+		<br>
+		Favorite brewery: <%= @user.favorite_brewery %>
+	<% end %>
+</p>
+
+<p>
 	<% if(@beer_clubs.any?) %>
 		Member of
 		<% @beer_clubs.each do |bc| %>

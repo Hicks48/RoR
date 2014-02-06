@@ -24,8 +24,9 @@ class BeersController < ApplicationController
   # GET /beers/new.json
   def new
     @beer = Beer.new
-	@breweries = Brewery.all
-	@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+	#@breweries = Brewery.all
+	#@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+	set_breweries_and_styles_for_template
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beer }
@@ -78,5 +79,10 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url }
       format.json { head :no_content }
     end
+  end
+  
+  def set_breweries_and_styles_for_template
+    @breweries = Brewery.all
+    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
   end
 end

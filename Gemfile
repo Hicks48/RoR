@@ -4,6 +4,18 @@ gem 'rails', '3.2.12'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'debugger', group: [:development, :test]
 
+#Testi juttuja
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'simplecov', require: false
+  gem 'launchy'
+end
+
 #Heroku fixses
 gem 'rails_12factor'
 ruby '1.9.3'
