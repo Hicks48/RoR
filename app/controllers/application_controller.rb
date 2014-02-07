@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
   	if(user.nil?)
   		return false
   	end
-  	return user.admin
+  	return user.admin?
   end
 end

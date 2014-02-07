@@ -94,4 +94,21 @@ describe "User" do
   	FactoryGirl.create(:rating, user: user_2, beer: beer_2)
   	FactoryGirl.create(:rating, user: user_2, beer: beer_2)
   end
+  
+  #Tehtava kymmenen
+  it "Kaikki simplecoviin" do
+  	BeerClub
+  	BeerClubsController
+  	Beer
+  	BeersController
+  	User
+  	UsersController
+  	Brewery
+  	BreweriesController
+  	Rating
+  	RatingsController
+  	Membership
+  	MembershipsController
+  	SessionsController
+  end
 end
