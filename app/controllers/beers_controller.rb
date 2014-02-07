@@ -1,6 +1,9 @@
 class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
+  before_filter :ensure_that_signed_in, except: [:index, :show]
+  before_filter :ensure_that_is_admin, only: [:destroy]
+  
   def index
     @beers = Beer.all
     respond_to do |format|

@@ -13,16 +13,18 @@ validates :username, length: { in: 3..15 }
 validates :password, length: { minimum: 4 }
 validates :password, format: { with: /(.*[A-Z].*[0-9].*)|(.*[0-9].*[A-Z].*)/ }
 validates_confirmation_of :password
-  attr_accessible :username, :password, :password_confirmation
+  attr_accessible :username, :password, :password_confirmation, :admin
   
   def favorite_beer
   	return nil if ratings.empty?
     return ratings.sort_by{ |r| r.score }.last.beer
   end
+  
   #Kolmas tehtava
   def favorite_style
   	return nil if ratings.empty?
   	styles=[]
+  	init_styles(styles)
   	max = nil
   	max_score = 0.0
   	ratings.each do |r|
@@ -34,6 +36,14 @@ validates_confirmation_of :password
   		end
   	end
   	return max
+  end
+  
+  def init_styles(styles)
+  	beers.each do |b|
+  		if(styles.include?(b.style))
+  			styles << b.style
+  		end
+  	end
   end
   
   def average_style(style)
@@ -52,6 +62,7 @@ validates_confirmation_of :password
   def favorite_brewery
   	return nil if ratings.empty?
   	brewerys = []
+  	init_brewerys(brewerys)
   	max = nil
   	max_score = 0.0
   	ratings.each do |r|
@@ -63,6 +74,14 @@ validates_confirmation_of :password
   		end
   	end
   	return max
+  end
+  
+  def init_brewerys(brewerys)
+  	beers.each do |b|
+  		if(brewerys.include?(b.brewery))
+  			brewerys << b.brewery
+  		end
+  	end
   end
   
   def average_brewery(brewery)

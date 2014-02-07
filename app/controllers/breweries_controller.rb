@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
-	before_filter :authenticate, only: [:destroy]
-	
+	#before_filter :authenticate, only: [:destroy]
+	before_filter :ensure_that_signed_in, except: [:index, :show]
+	before_filter :ensure_that_is_admin, only: [:destroy]
   # GET /breweries
   # GET /breweries.json
   def index
@@ -89,10 +90,10 @@ class BreweriesController < ApplicationController
     end
   end
   
-  def authenticate
-  	admin_accounts = {"admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
-  	authenticate_or_request_with_http_basic do |username, password|
-  		admin_accounts[username] != nil && admin_accounts[username] == password	
-  	end
-  end
+  #def authenticate
+  #	admin_accounts = {"admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
+  #	authenticate_or_request_with_http_basic do |username, password|
+  #		admin_accounts[username] != nil && admin_accounts[username] == password	
+  #	end
+  #end
 end

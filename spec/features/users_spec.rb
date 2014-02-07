@@ -58,7 +58,7 @@ describe "User" do
   	visit user_path(u)
   	
   	first("li").click_link("delete")
-  	expect(Rating.count).to eq(init_rating_size - 1)
+  	expect(Rating.all.count).to eq(init_rating_size - 1)
   end
   
   #Tehtava yhdeksan

@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/Hicks48/RoR.png?branch=master)](https://travis-ci.org/Hicks48/RoR)
+[![Code Climate](https://codeclimate.com/github/Hicks48/RoR.png)](https://codeclimate.com/github/Hicks48/RoR)
