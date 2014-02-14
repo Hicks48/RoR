@@ -39,7 +39,7 @@ class BeersController < ApplicationController
   # GET /beers/1/edit
   def edit
     @beer = Beer.find(params[:id])
-     @breweries = Brewery.all
+    set_breweries_and_styles_for_template
   end
 
   # POST /beers
@@ -59,7 +59,7 @@ class BeersController < ApplicationController
   # PUT /beers/1.json
   def update
     @beer = Beer.find(params[:id])
-
+    set_breweries_and_styles_for_template
     respond_to do |format|
       if @beer.update_attributes(params[:beer])
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
