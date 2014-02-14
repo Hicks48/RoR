@@ -16,7 +16,9 @@ class BeersController < ApplicationController
   # GET /beers/1.json
   def show
     @beer = Beer.find(params[:id])
-
+    @rating = Rating.new
+    @rating.beer = @beer
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @beer }
@@ -27,8 +29,6 @@ class BeersController < ApplicationController
   # GET /beers/new.json
   def new
     @beer = Beer.new
-	#@breweries = Brewery.all
-	#@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
 	set_breweries_and_styles_for_template
     respond_to do |format|
       format.html # new.html.erb
@@ -39,8 +39,7 @@ class BeersController < ApplicationController
   # GET /beers/1/edit
   def edit
     @beer = Beer.find(params[:id])
-     @breweries = Brewery.all 
-     @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+     @breweries = Brewery.all
   end
 
   # POST /beers
@@ -48,10 +47,10 @@ class BeersController < ApplicationController
   def create
     @beer = Beer.new(params[:beer])
     @breweries = Brewery.all
-	@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
     if(@beer.save)
     	redirect_to beers_path
     else
+    	@styles = Style.all
     	render :new
     end
   end
@@ -86,6 +85,6 @@ class BeersController < ApplicationController
   
   def set_breweries_and_styles_for_template
     @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+    @styles = Style.all
   end
 end

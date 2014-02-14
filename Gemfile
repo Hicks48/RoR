@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
+gem 'httparty'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem "rails-settings-cached", "0.2.4"
 gem 'debugger', group: [:development, :test]
 
 #Testi juttuja
@@ -14,6 +16,7 @@ group :test do
   gem 'capybara'
   gem 'simplecov', require: false
   gem 'launchy'
+  gem 'webmock'
 end
 
 #Heroku fixses

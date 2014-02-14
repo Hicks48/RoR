@@ -1,7 +1,9 @@
 Ratebeer::Application.routes.draw do
+  resources :styles
   resources :beer_clubs
   resources :users
   resources :memberships
+  	resources :places, :only => [:index, :show]
   	get 'signup', to: 'users#new'
 	get 'kaikki_bisset', to: 'beers#index'
 	get '/', to: 'breweries#index'
@@ -13,6 +15,7 @@ Ratebeer::Application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :memberships, only: [:new]
 	post "join_member", to: "membership#join"
+	post "places", to: "places#search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

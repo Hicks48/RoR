@@ -69,15 +69,18 @@ describe "User" do
   	brew_1 = FactoryGirl.create(:brewery, name: "Testi_Panimo_1")
   	brew_2 = FactoryGirl.create(:brewery, name: "Testi_Panimo_2")
   	
-  	beer_1 = FactoryGirl.create(:beer, brewery: brew_1, name: "Testi_Kalja_1", style: "Paras")
-  	beer_2 = FactoryGirl.create(:beer, brewery: brew_2,name: "Testi_Kalja_2", style: "Kohtalainen")
+  	style_1 = Style.create name: "Paras"
+  	style_2 = Style.create name: "Kohtalainen"
+  	
+  	beer_1 = FactoryGirl.create(:beer, brewery: brew_1, name: "Testi_Kalja_1", style: style_1)
+  	beer_2 = FactoryGirl.create(:beer, brewery: brew_2,name: "Testi_Kalja_2", style: style_2)
   	
   	FactoryGirl.create(:rating, user: user, beer: beer_1, score: 20)
   	FactoryGirl.create(:rating, user: user, beer: beer_2, score: 10)
   	
   	visit user_path(user)
   	
-  	expect(page).to have_content("Favorite style: " + beer_1.style)
+  	expect(page).to have_content("Favorite style: " + beer_1.style.to_s)
   	expect(page).to have_content("Favorite brewery: " + brew_1.to_s)
   end
   

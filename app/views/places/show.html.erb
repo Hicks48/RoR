@@ -1,0 +1,9 @@
+<h1> <%= @place.name %> </h1>
+
+<p>
+	<%= @place.street %>
+<br>
+	<%= @place.zip %> <%= @place.city %>
+</p>
+
+<iframe width = "400" height = "400" style = "border: 1px solid" src = "<%= @place.blogmap %>">  </iframe>

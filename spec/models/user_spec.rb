@@ -98,16 +98,16 @@ end
     	end
     	
     	it "is the only rated if only one rating" do
-    		style = "IPA"
+    		style = Style.create name: "IPA"
     		give_user_rating(user, style, 10)
     		
     		expect(user.favorite_style).to eq(style)
     	end
     	
     	it "is the one with higest average score" do
-    		style_1 = "Lager"
-    		style_2 = "IPA"
-    		style_3 = "Porter"
+    		style_1 = Style.create name: "Lager"
+    		style_2 = Style.create name: "IPA"
+    		style_3 = Style.create name: "Porter"
     		
     		give_user_rating(user, style_1, 5)
     		give_user_rating(user, style_2, 15)
