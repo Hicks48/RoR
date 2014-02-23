@@ -7,7 +7,7 @@ belongs_to :beer
 belongs_to :user
   attr_accessible :beer_id, :score, :user_id
   
-  scope :recent, order(:created_at).limit(5)
+  scope :recent, Rating.order(:created_at).reverse!.take(5)
   
   def to_s
   	return beer.name + " " + score.to_s

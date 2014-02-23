@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
 
   def index
   	@ratings = Rating.all
-  	@recent_ratings = Rating.recent
+  	@recent_ratings = Rating.recent.reverse!
   	@most_active_users = User.most_active(3)
 	@top_breweries = Brewery.top 3  	
   	@top_beers = Beer.top 3
