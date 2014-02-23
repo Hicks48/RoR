@@ -1,11 +1,30 @@
-<h2>List of ratings</h2>
+<h1> Rating statistics </h1>
 
-<p> Number of ratings: <%= Rating.count %> </p>
-
-<ul>
-	<% @ratings.each do |rating| %>
-   		<li> <%= rating %> <%= link_to rating.user.username , user_path(rating.user)%> </li>
- 	<% end %> 
+<ul class = "list-inline">
+	<li> 
+		<h2> Best beers </h2> 
+			<%= render 'listBest', array: @top_beers %>
+	</li>
+	<li>
+		<h2> Best breweries </h2>
+			<%= render 'listBest', array: @top_breweries %>
+	</li>
+	<li>
+		<h2> Best styles </h2>
+			<%= render 'listBest', array: @top_styles %>
+	</li>
+	<li>
+		<h2> Most active users </h2>
+			<%= render 'listMostActiveUsers', array: @most_active_users %>
+	</li>
+	<li>
+		<h2> Recent ratings </h2>
+			<%= render 'listRatings', ratings: @recent_ratings %>
+	</li>
+	<li>
+		<h2>List of ratings</h2>
+			<p> Number of ratings: <%= @ratings.count %> </p>
+			<%= render 'listRatings', ratings: @ratings %>
+	</li>
 </ul>
-
-<%= link_to 'create new rating', new_rating_path %>
+<%= link_to 'create new rating', new_rating_path, class:"btn btn-success" %>

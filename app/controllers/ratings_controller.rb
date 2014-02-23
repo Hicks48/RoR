@@ -2,6 +2,16 @@ class RatingsController < ApplicationController
 
   def index
   	@ratings = Rating.all
+  	@recent_ratings = Rating.recent
+  	@most_active_users = User.most_active(3)
+	@top_breweries = Brewery.top 3  	
+  	@top_beers = Beer.top 3
+  	@top_styles = Style.top 3
+  	
+  	respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @ratings, methods:[:beer] }
+    end
   end
   
   def new

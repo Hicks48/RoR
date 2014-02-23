@@ -1,0 +1,7 @@
+<table class = "table table-hover">
+	<ul>
+		<% ratings.each do |rating| %>
+   			<li> <%= rating %> <%= link_to rating.user.username , user_path(rating.user)%> </li>
+ 		<% end %> 
+	</ul>
+</table>

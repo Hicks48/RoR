@@ -4,7 +4,13 @@ gem 'rails', '3.2.12'
 gem 'httparty'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "rails-settings-cached", "0.2.4"
+gem 'jquery-turbolinks'
 gem 'debugger', group: [:development, :test]
+
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
 
 #Testi juttuja
 group :development, :test do
@@ -17,6 +23,8 @@ group :test do
   gem 'simplecov', require: false
   gem 'launchy'
   gem 'webmock'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner', '< 1.1.0'
 end
 
 #Heroku fixses

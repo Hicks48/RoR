@@ -1,12 +1,28 @@
 class BreweriesController < ApplicationController
 	#before_filter :authenticate, only: [:destroy]
-	before_filter :ensure_that_signed_in, except: [:index, :show]
+	before_filter :ensure_that_signed_in, except: [:index, :show, :list]
 	before_filter :ensure_that_is_admin, only: [:destroy]
   # GET /breweries
   # GET /breweries.json
   def index
     @breweries = Brewery.all
-	#render :index
+	@active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
+	
+	order = params[:order]
+	
+	case order
+		when 'name' then @breweries.sort_by!{|brew| brew.name}
+		when 'year' then @breweries.sort_by!{|brew| brew.year}
+	end
+	
+	respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @breweries , methods: [:beers]}
+    end
+  end
+  
+  def list
   end
     
   # GET /breweries/1

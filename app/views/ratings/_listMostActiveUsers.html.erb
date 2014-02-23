@@ -1,0 +1,22 @@
+<table class = "table table-hover">
+	<thead>
+		<tr> 
+			<th></th>
+			<th> favorite beer </th>
+			<th> prefered style </th>
+			<th> favorite brewery </th>
+			<th> ratings </th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% array.each do |element| %>
+			<tr>
+				<td> <%= element.username %> </td>
+				<td> <%= element.favorite_style %> </td>
+				<td> <%= element.favorite_brewery %> </td>
+				<td> <%= element.ratings.count %> </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -4,9 +4,13 @@ Ratebeer::Application.routes.draw do
   resources :users
   resources :memberships
   	resources :places, :only => [:index, :show]
+  	root :to => "breweries#index"
   	get 'signup', to: 'users#new'
 	get 'kaikki_bisset', to: 'beers#index'
 	get '/', to: 'breweries#index'
+	get 'beerlist', to:'beers#list'
+	get 'ngbeerlist', to:'beers#nglist'
+	get 'brewerylist', to:'breweries#list'
 	delete 'signout', to: 'sessions#destroy'
 	get 'signin', to: 'sessions#new'
   resources :beers

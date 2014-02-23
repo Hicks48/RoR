@@ -20,6 +20,11 @@ validates_confirmation_of :password
     return ratings.sort_by{ |r| r.score }.last.beer
   end
   
+  def self.most_active(n)
+  	active = User.all.sort_by{ |u| -(u.ratings.count) }
+  	return active.take(n)
+  end
+  
   #Kolmas tehtava
   #def favorite_style
   #	return nil if ratings.empty?
@@ -107,7 +112,6 @@ validates_confirmation_of :password
     end
     rating_pairs.sort_by { |s| s.last }.last.first
   end
-
   
   #Neljas tehtava
   #def favorite_brewery

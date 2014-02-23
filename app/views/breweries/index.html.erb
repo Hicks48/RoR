@@ -2,29 +2,21 @@
 Listing breweries
 </h1>
 
-<p> Number of breweries: <%= @breweries.count %> </p>
+<h2> Active </h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Year</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<p> Number of active breweries: <%= @active_breweries.count %> </p>
 
-<% @breweries.each do |brewery| %>
-  <tr>
-    <td><%= link_to brewery.name, brewery %></td>
-    <td><%= brewery.year %></td>
-    <td><%= link_to 'Edit', edit_brewery_path(brewery) unless current_user.nil? %></td>
-    <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' } if current_user_is_admin %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'list', breweries: @active_breweries %>
 
 <br />
 
-<%= link_to 'New Brewery', new_brewery_path unless current_user.nil? %>
-<br>
-<%= link_to 'List of beers', beers_path %>
+<h2> Retired </h2>
+
+<p> Number of retired breweries: <%= @retired_breweries.count %> </p>
+
+<%= render 'list', breweries: @retired_breweries %>
+
+<br />
+<%= link_to 'New Brewery', new_brewery_path, class:"btn btn-success" unless current_user.nil? %>
+<br />
+<%= link_to 'List of beers', beers_path, class:"btn btn-default" %>
